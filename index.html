@@ -124,7 +124,7 @@ footer{color:var(--mut);font-size:12.5px;text-align:center;margin:18px 6px}
  function clamp(){ var w=W*S, h=H*S, vw=innerWidth, vh=innerHeight; X = w<=vw ? (vw-w)/2 : Math.min(0,Math.max(vw-w,X)); Y = h<=vh ? (vh-h)/2 : Math.min(0,Math.max(vh-h,Y)); }
  function fit(){ var vw=innerWidth, vh=innerHeight; base=Math.min(vw/W,(vh-40)/H); S=base; X=(vw-W*S)/2; Y=(vh-H*S)/2; apply(); }
  function zoomAt(f,cx,cy){ var s2=Math.min(Math.max(S*f,base*0.9),base*8); X=cx-(cx-X)*s2/S; Y=cy-(cy-Y)*s2/S; S=s2; clamp(); apply(); }
- function open(fig){ var c=fig.querySelector('.imgw').cloneNode(true); c.querySelectorAll('.on').forEach(function(e){e.classList.remove('on')}); st.innerHTML=''; st.appendChild(c);
+ function open(fig){ var c=fig.querySelector('.imgw').cloneNode(true); c.querySelectorAll('.on').forEach(function(e){e.classList.remove('on')}); c.querySelectorAll('img').forEach(function(i){ i.removeAttribute('loading'); i.loading='eager'; }); st.innerHTML=''; st.appendChild(c);
    var img=fig.querySelector('img'); W=Math.max(+img.getAttribute('width'),360)+44; st.style.width=W+'px'; lb.hidden=false; H=st.offsetHeight; fit(); history.pushState({lb:1},''); }
  function close(){ if(lb.hidden) return; lb.hidden=true; st.innerHTML=''; }
  document.querySelectorAll('.frame').forEach(function(f){ f.onclick=function(){ open(f.parentNode); }; });
