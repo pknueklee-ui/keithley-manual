@@ -54,7 +54,7 @@ footer{color:var(--mut);font-size:12.5px;text-align:center;margin:18px 6px}
 .totop.show{opacity:.92;pointer-events:auto}
 /* picture viewer */
 #lb{position:fixed;inset:0;z-index:60;background:#14161b;touch-action:none;overflow:hidden} #lb[hidden]{display:none}
-.stage{position:absolute;left:0;top:0;transform-origin:0 0;will-change:transform} .stage .imgw{background:#fff;padding:22px}
+.stage{position:absolute;left:0;top:0;transform-origin:0 0;will-change:transform;background:#fff;padding:24px;border-radius:6px}
 .stage .imgw img{width:100%;outline:0}
 #lb .x{position:absolute;top:calc(10px + env(safe-area-inset-top));right:12px;width:46px;height:46px;border:0;border-radius:50%;background:#fff;font-size:20px;cursor:pointer;z-index:2}
 .lbhint{position:absolute;left:0;right:0;bottom:calc(8px + env(safe-area-inset-bottom));text-align:center;color:#cfd3da;font-size:12.5px;padding:0 60px;pointer-events:none}
@@ -125,7 +125,7 @@ footer{color:var(--mut);font-size:12.5px;text-align:center;margin:18px 6px}
  function fit(){ var vw=innerWidth, vh=innerHeight; base=Math.min(vw/W,(vh-40)/H); S=base; X=(vw-W*S)/2; Y=(vh-H*S)/2; apply(); }
  function zoomAt(f,cx,cy){ var s2=Math.min(Math.max(S*f,base*0.9),base*8); X=cx-(cx-X)*s2/S; Y=cy-(cy-Y)*s2/S; S=s2; clamp(); apply(); }
  function open(fig){ var c=fig.querySelector('.imgw').cloneNode(true); c.querySelectorAll('.on').forEach(function(e){e.classList.remove('on')}); c.querySelectorAll('img').forEach(function(i){ i.removeAttribute('loading'); i.loading='eager'; }); st.innerHTML=''; st.appendChild(c);
-   var img=fig.querySelector('img'); W=Math.max(+img.getAttribute('width'),360)+44; st.style.width=W+'px'; lb.hidden=false; H=st.offsetHeight; fit(); history.pushState({lb:1},''); }
+   var img=fig.querySelector('img'); W=Math.max(+img.getAttribute('width'),360)+48; st.style.width=W+'px'; lb.hidden=false; H=st.offsetHeight; fit(); history.pushState({lb:1},''); }
  function close(){ if(lb.hidden) return; lb.hidden=true; st.innerHTML=''; }
  document.querySelectorAll('.frame').forEach(function(f){ f.onclick=function(){ open(f.parentNode); }; });
  document.getElementById('lbx').onclick=function(e){ e.stopPropagation(); history.back(); };
